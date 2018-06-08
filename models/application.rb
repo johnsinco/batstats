@@ -10,11 +10,18 @@ ActiveRecord::Base.establish_connection(
 # Set up database tables and columns
 ActiveRecord::Schema.define do
   create_table :hit_stats, force: true do |t|
-    t.string :player
-    t.numeric :year
+    t.integer :year
     t.string :league
     t.string :team
     t.integer :at_bats
+    t.integer :games
+    t.integer :runs
+    t.integer :hits
+    t.integer :doubles
+    t.integer :triples
+    t.integer :home_runs
+    t.integer :rbis
+    t.integer :stolen_bases
     t.references :player
   end
   create_table :players, force: true, id: false do |t|
