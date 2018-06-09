@@ -24,10 +24,11 @@ describe "Most Improved Batting Average" do
       player = create(:player)
       player.hit_stats << build(:hit_stat, year: 2008, hits: 20)
       player.hit_stats << build(:hit_stat, year: 2009, hits: 40)
+      player.hit_stats << build(:hit_stat, year: 2010, hits: 80)
       player.save!
-      expect(player.hit_stats.count).to eq(2)
-      expect(player.year_difference(start_year: 2008)).
-        to eq(0.202)
+      expect(player.hit_stats.count).to eq(3)
+      expect(player.year_difference(start_year: 2008)).to eq(0.2)
+      expect(player.year_difference(start_year: 2009)).to eq(0.4)
     end
   end
 end

@@ -16,7 +16,7 @@ FactoryBot.define do
     sequence(:year, 2008)
     league 'AL'
     team 'COL'
-    at_bats 99
+    at_bats 100
     games 44
     runs 22
     hits 20
