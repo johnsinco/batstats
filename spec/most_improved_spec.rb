@@ -27,7 +27,7 @@ describe "Most Improved Batting Average" do
       player.save!
       expect(player.hit_stats.count).to eq(2)
       expect(player.year_difference(start_year: 2008)).
-        to eq(0.5)
+        to eq(0.202)
     end
   end
 end

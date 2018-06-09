@@ -8,6 +8,6 @@ class HitStat < ApplicationModel
   scope :average_elig, -> {where("at_bats > 200")}
 
   def batting_average
-    hits / at_bats
+    return (hits.to_f / at_bats).truncate(3)
   end
 end
