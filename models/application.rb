@@ -20,13 +20,11 @@ ActiveRecord::Schema.define do
     t.integer :doubles
     t.integer :triples
     t.integer :home_runs
-    t.integer :rbis
-    t.integer :stolen_bases
-    t.references :player
+    t.belongs_to :player
   end
-  create_table :players, force: true, id: false do |t|
+  create_table :players, force: true do |t|
     t.string :name
-    t.string :id, primary_key: true
+    t.string :player_id, unique: true
   end
 end
 

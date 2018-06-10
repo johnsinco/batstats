@@ -6,3 +6,5 @@ require 'active_support/dependencies'
 require_relative 'models/application'
 require_relative 'models/player'
 require_relative 'models/hit_stat'
+
+# require_relative 'lib/load_data'

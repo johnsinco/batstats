@@ -2,8 +2,6 @@ require_relative '../batstats'
 require 'factory_config'
 require 'database_cleaner'
 
-ApplicationModel
-
 RSpec.configure do |config|
 
   config.expect_with :rspec do |expectations|
@@ -15,15 +13,9 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
-  end
-
-  config.around(:each) do |example|
-    DatabaseCleaner.cleaning do
-      example.run
-    end
+  DatabaseCleaner.strategy = :truncation
+  config.before(:each) do
+    DatabaseCleaner.clean
   end
 
   config.shared_context_metadata_behavior = :apply_to_host_groups

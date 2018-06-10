@@ -1,10 +1,19 @@
 require 'csv'
 
 DATA_FILES = {
-  HitStats: 'Batting-07-12.csv',
+  HitStat: 'data/Batting-07-12.csv',
   # Players: 'Master-small.csv'
 }
 
 DATA_FILES.each do |model, file|
-  puts Object.const_get(model).new
+  model = Object.const_get(model)
+  begin
+    CSV.foreach(file, headers: true) do |row|
+      puts row.to_h
+      model.from_csv_data!(row.to_h)
+    end
+  rescue CSV::MalformedCSVError => e
+    STDERR.puts "ERROR in CSV #{file}"
+    STDERR.puts e.backtrace.join("\n")
+  end
 end
