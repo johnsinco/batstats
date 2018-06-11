@@ -8,7 +8,12 @@ FactoryBot.define do
         create_list(:hit_stat, 4, player: player)
       end
     end
-    
+
+    factory :player_w_big_stats do
+      after(:create) do |player, evaluator|
+        create_list(:big_stat, 4, player: player)
+      end
+    end
   end
 
 
@@ -24,5 +29,9 @@ FactoryBot.define do
     doubles 6
     triples 2
     home_runs 11
+
+    factory :big_stat do
+      hits 400
+    end
   end
 end

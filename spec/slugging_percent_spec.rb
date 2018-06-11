@@ -9,4 +9,9 @@ describe "Slugging Percentage" do
     # should be (10-2-2-2) + (4 + 6 + 8) / 10
     expect(subject.slugging_percentage).to eq(0.22)
   end
+
+  it "can return data by year and team" do
+    player = create(:big_stat, team: 'COL', year: 2008)
+    expect(HitStat.year(2008).team('COL').to_a).to eq([player])
+  end
 end

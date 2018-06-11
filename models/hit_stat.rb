@@ -6,6 +6,8 @@ class HitStat < ApplicationModel
   belongs_to :player
 
   scope :average_elig, -> {where("at_bats >= 200")}
+  scope :year, ->(year) {where(year: year)}
+  scope :team, ->(team) {where(team: team)}
 
   def self.from_csv_data!(data)
     return nil unless data

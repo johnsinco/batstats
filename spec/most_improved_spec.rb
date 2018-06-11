@@ -21,7 +21,6 @@ describe "Most Improved Batting Average" do
       @player.hit_stats[1].update({hits: 40, year: 2009, at_bats: 200})
       @player.hit_stats[2].update({hits: 80, year: 2010, at_bats: 200})
       @player.save!
-      @player2 = create(:player)
     end
     it "returns zero if stats are missing" do
       player = build(:player)
@@ -35,7 +34,8 @@ describe "Most Improved Batting Average" do
     end
 
     it "returns the player with the biggest change for a year" do
-      pws = create(:player_w_stats)
+      pws = create(:player_w_big_stats)
+      expect(Player.count).to eq(2)
       expect(HitStat.most_improved_hitting(start_year: 2008)).to eq([@player, 0.1])
     end
   end
