@@ -13,7 +13,8 @@ class HitStat < ApplicationModel
     return nil unless data
     HitStat.create!(player_id: data['playerID'], year: data['yearID'], league: data['league'],
       team: data['teamID'], at_bats: data['AB'], games: data['G'], runs: data['R'],
-      hits: data['H'], doubles: data['2B'], triples: data['3B'], home_runs: data['HR'])
+      hits: data['H'], doubles: data['2B'], triples: data['3B'], home_runs: data['HR'],
+      rbi: data['RBI'])
   end
 
   def batting_average

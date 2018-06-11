@@ -17,8 +17,8 @@ Stats.slugging_percentage(year: 2007, team: 'OAK').each do |name, stat|
 end
 puts "    "
 puts "2011 Triple Crown Winners"
-puts "  #{Stats.triple_crown_winner(year: 2011, league: 'AL') || 'none'}"
-puts "  #{Stats.triple_crown_winner(year: 2011, league: 'NL') || 'none'}"
+puts "  #{Stats.triple_crown_winner(year: 2011, league: 'AL')}"
+puts "  #{Stats.triple_crown_winner(year: 2011, league: 'NL')}"
 puts "2012 Triple Crown Winners"
-puts "  #{Stats.triple_crown_winner(year: 2012, league: 'AL') || 'none'}"
-puts "  #{Stats.triple_crown_winner(year: 2012, league: 'NL') || 'none'}"
+puts "  #{Stats.triple_crown_winner(year: 2012, league: 'AL')}"
+puts "  #{Stats.triple_crown_winner(year: 2012, league: 'NL')}"

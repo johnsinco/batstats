@@ -1,14 +1,14 @@
 module Stats
 
   def self.triple_crown_winner(year:, league:)
-    stats = HitStat.year(year).where("league = ?", league)
+    stats = HitStat.min_at_bats(400).year(year).where("league = ?", league)
     best_bat = stats.max_by { |s| s.batting_average || 0 }
     most_hr = stats.max_by { |s| s.home_runs || 0 }
     most_rbi = stats.max_by { |s| s.rbi || 0 }
     if best_bat && [best_bat, most_hr, most_rbi].uniq == [best_bat]
-      return best_bat.player
+      return best_bat.player.name
     else
-      return nil
+      return 'none'
     end
   end
 
