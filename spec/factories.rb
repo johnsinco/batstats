@@ -37,6 +37,7 @@ FactoryBot.define do
     doubles 6
     triples 2
     home_runs 11
+    rbi 3
 
     factory :big_stat do
       hits 400
@@ -47,6 +48,7 @@ FactoryBot.define do
       home_runs 100
       rbi 300
       year 2008
+      at_bats 500
       league 'AL'
     end
   end

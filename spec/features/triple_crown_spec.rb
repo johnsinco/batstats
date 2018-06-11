@@ -4,7 +4,7 @@ describe "Triple Crown Winner" do
     create(:hit_stat)
     expect(Player.count).to eq(2)
     expect(HitStat.count).to eq(3)
-    expect(Stats.triple_crown_winner(year: 2008, league: 'AL')).to eq(juicer)
+    expect(Stats.triple_crown_winner(year: 2008, league: 'AL')).to eq(juicer.name)
   end
 
   it "returns nil if there's no single winner" do
