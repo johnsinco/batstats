@@ -20,6 +20,7 @@ ActiveRecord::Schema.define do
     t.integer :doubles
     t.integer :triples
     t.integer :home_runs
+    t.integer :rbi
     t.belongs_to :player
   end
   create_table :players, force: true do |t|

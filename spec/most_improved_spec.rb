@@ -7,10 +7,10 @@ describe "Most Improved Batting Average" do
       @elig = create(:hit_stat, at_bats: 200, player: player2)
     end
     it 'doesnt return players under 200 appearances' do
-      expect(HitStat.average_elig).to_not include(@inelig)
+      expect(HitStat.min_at_bats(200)).to_not include(@inelig)
     end
     it 'does return players over 200 at bats' do
-      expect(HitStat.average_elig).to include(@elig)
+      expect(HitStat.min_at_bats(200)).to include(@elig)
     end
   end
 

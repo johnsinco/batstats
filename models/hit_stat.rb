@@ -5,7 +5,7 @@ class HitStat < ApplicationModel
 
   belongs_to :player
 
-  scope :average_elig, -> {where("at_bats >= 200")}
+  scope :min_at_bats, -> (abs) {where("at_bats >= ?", abs)}
   scope :year, ->(year) {where(year: year)}
   scope :team, ->(team) {where(team: team)}
 
@@ -20,8 +20,7 @@ class HitStat < ApplicationModel
     by_player = Hash.new([])
     best_average = 0
     best_player = nil
-    playercount = average_elig.distinct(:player_id).count
-    all_elig = average_elig.where(year: (start_year..(start_year+1))).order(:year)
+    all_elig = min_at_bats(200).where(year: (start_year..(start_year+1))).order(:year)
     # group stats by player
     all_elig.each do |elig_stat|
       pid = elig_stat.player_id
@@ -36,6 +35,18 @@ class HitStat < ApplicationModel
     [best_player, best_average]
   end
 
+  def self.triple_crown_winner(year:, league:)
+    stats = HitStat.year(year).where("league = ?", league)
+    best_bat = stats.max_by { |s| s.batting_average }
+    most_hr = stats.max_by { |s| s.home_runs }
+    most_rbi = stats.max_by { |s| s.rbi }
+    if best_bat && [best_bat, most_hr, most_rbi].uniq == [best_bat]
+      return best_bat.player
+    else
+      return nil
+    end
+  end
+
   def batting_average
     return (hits.to_f / at_bats).truncate(3)
   end
@@ -44,6 +55,7 @@ class HitStat < ApplicationModel
     ((hits - doubles - triples - home_runs) +
         (2 * doubles) + (3 * triples) + (4 * home_runs)) / at_bats.to_f
   end
+
 
   private
 

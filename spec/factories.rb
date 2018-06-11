@@ -14,6 +14,13 @@ FactoryBot.define do
         create_list(:big_stat, 4, player: player)
       end
     end
+
+    factory :juiced_player do
+      name 'AROD'
+      after(:create) do |player, evaluator|
+        create_list(:arod, 2, player: player)
+      end
+    end
   end
 
 
@@ -32,6 +39,14 @@ FactoryBot.define do
 
     factory :big_stat do
       hits 400
+    end
+
+    factory :arod do
+      hits 500
+      home_runs 100
+      rbi 300
+      year 2008
+      league 'AL'
     end
   end
 end
