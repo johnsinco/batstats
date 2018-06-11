@@ -22,7 +22,7 @@ class HitStat < ApplicationModel
   end
 
   def slugging_percentage
-    return 0 unless hits && doubles && triples && home_runs && at_bats
+    return 0 unless hits && doubles && triples && home_runs && at_bats && at_bats > 0
     ((hits - doubles - triples - home_runs) +
         (2 * doubles) + (3 * triples) + (4 * home_runs)) / at_bats.to_f
   end
