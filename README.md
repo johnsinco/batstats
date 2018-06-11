@@ -1,6 +1,15 @@
-BATSTATS
----------
+#BATSTATS
 
 Calculate some baseball stats with a command line ruby script
 
-# Install
+## Install
+
+```
+ bundle install
+```
+
+## Run
+
+```
+  ./batstats
+```
