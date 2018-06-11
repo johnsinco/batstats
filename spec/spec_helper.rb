@@ -1,4 +1,4 @@
-require_relative '../batstats'
+require_relative '../app'
 require 'factory_config'
 require 'database_cleaner'
 

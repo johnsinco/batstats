@@ -36,7 +36,7 @@ describe "Most Improved Batting Average" do
     it "returns the player with the biggest change for a year" do
       pws = create(:player_w_big_stats)
       expect(Player.count).to eq(2)
-      expect(HitStat.most_improved_hitting(start_year: 2008)).to eq([@player, 0.1])
+      expect(Stats.most_improved_hitting(start_year: 2008)).to eq([@player, 0.1])
     end
   end
 end
