@@ -3,7 +3,7 @@ require_relative './application'
 
 class HitStat < ApplicationModel
 
-  belongs_to :player
+  belongs_to :player, foreign_key: 'player_id', primary_key: 'player_id'
 
   scope :min_at_bats, -> (abs) {where("at_bats >= ?", abs)}
   scope :year, ->(year) {where(year: year)}
@@ -17,10 +17,12 @@ class HitStat < ApplicationModel
   end
 
   def batting_average
+    return 0 unless hits.to_i > 0 && at_bats.to_i > 0
     return (hits.to_f / at_bats).truncate(3)
   end
 
   def slugging_percentage
+    return 0 unless hits && doubles && triples && home_runs && at_bats
     ((hits - doubles - triples - home_runs) +
         (2 * doubles) + (3 * triples) + (4 * home_runs)) / at_bats.to_f
   end

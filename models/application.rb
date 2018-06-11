@@ -9,6 +9,10 @@ ActiveRecord::Base.establish_connection(
 
 # Set up database tables and columns
 ActiveRecord::Schema.define do
+  create_table :players, id: false, primary_key: 'player_id', force: true do |t|
+    t.string :name
+    t.string :player_id
+  end
   create_table :hit_stats, force: true do |t|
     t.integer :year
     t.string :league
@@ -21,11 +25,7 @@ ActiveRecord::Schema.define do
     t.integer :triples
     t.integer :home_runs
     t.integer :rbi
-    t.belongs_to :player
-  end
-  create_table :players, force: true do |t|
-    t.string :name
-    t.string :player_id, unique: true
+    t.belongs_to :player, type: :string
   end
 end
 

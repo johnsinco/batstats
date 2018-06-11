@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :player do
-    sequence(:name) {|n| "#{n} Big Poppi" }
+    # sequence(:name) {|n| "#{n} Big Poppi" }
+    name 'Big Poppi'
     sequence(:player_id) {|n| "aaa#{n}"}
 
     factory :player_w_stats do

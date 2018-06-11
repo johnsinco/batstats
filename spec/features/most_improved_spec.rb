@@ -17,20 +17,10 @@ describe "Most Improved Batting Average" do
   context "averages by year" do
     before do
       @player = create(:player_w_stats)
-      @player.hit_stats[0].update({hits: 20, year: 2008, at_bats: 200})
-      @player.hit_stats[1].update({hits: 40, year: 2009, at_bats: 200})
+      @player.hit_stats[0].update({hits: 40, year: 2009, at_bats: 200})
+      @player.hit_stats[1].update({hits: 20, year: 2008, at_bats: 200})
       @player.hit_stats[2].update({hits: 80, year: 2010, at_bats: 200})
       @player.save!
-    end
-    it "returns zero if stats are missing" do
-      player = build(:player)
-      expect(player.year_difference(start_year: 2009)).
-        to eq(0.0)
-    end
-
-    it "returns the numerical difference of the 2 years" do
-      expect(@player.year_difference(start_year: 2008)).to eq(0.1)
-      expect(@player.year_difference(start_year: 2009)).to eq(0.2)
     end
 
     it "returns the player with the biggest change for a year" do

@@ -12,6 +12,7 @@ describe "Slugging Percentage" do
 
   it "can return data by year and team" do
     player = create(:big_stat, team: 'COL', year: 2008)
-    expect(HitStat.year(2008).team('COL').to_a).to eq([player])
+    expect(Stats.slugging_percentage(year: 2008, team: 'COL')).
+      to eq([["Big Poppi", 4.43]])
   end
 end

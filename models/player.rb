@@ -1,11 +1,10 @@
 class Player < ApplicationModel
-  has_many :hit_stats
+  self.primary_key = 'player_id'
+  has_many :hit_stats, primary_key: 'player_id', foreign_key: 'player_id'
 
-  def year_difference(start_year:)
-    stats = hit_stats.where(year: [start_year..(start_year+1)])
-    return 0 unless stats.length == 2
-    yr1, yr2 = stats.map {|stat| stat.batting_average}
-    (yr2 - yr1).truncate(3)
+  def self.from_csv_data!(data)
+    return nil unless data
+    Player.create!(player_id: data['playerID'],
+      name: "#{data['nameFirst']} #{data['nameLast']}")
   end
-
 end
